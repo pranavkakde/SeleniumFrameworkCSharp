@@ -1,0 +1,10 @@
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\bin\Release\SeleniumFramework.exe.config
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\bin\Release\SeleniumFramework.exe
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\bin\Release\SeleniumFramework.pdb
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\bin\Release\nunit.framework.dll
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\bin\Release\WebDriver.dll
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\bin\Release\nunit.framework.xml
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\bin\Release\WebDriver.xml
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\obj\Release\SeleniumFramework.csproj.CoreCompileInputs.cache
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\obj\Release\SeleniumFramework.exe
+C:\Users\pranav\source\repos\firstProject\SeleniumFramework\obj\Release\SeleniumFramework.pdb
