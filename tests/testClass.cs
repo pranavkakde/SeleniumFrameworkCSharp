@@ -9,17 +9,17 @@ using OpenQA.Selenium.Chrome;
 using SeleniumFramework.util;
 using System.Runtime;
 using SeleniumFramework.pages;
-using FluentAssertions;
 namespace SeleniumFramework.tests
 {
     [TestFixture]
-
+    
     class testClass
     {
         IWebDriver driver = null;
+        Util util = new Util();
         GettingStarted gettingStarted = null;
         Home home = null;
-        public static void Main(string[] args)
+        public static void Main(string [] args)
         {
 
         }
@@ -29,32 +29,22 @@ namespace SeleniumFramework.tests
             driver = new ChromeDriver();
             gettingStarted = new GettingStarted(driver);
             home = new Home(driver);
+            home.openHome();
         }
         [Test]
-        public void testHomePage()
-        {
-            home.openHome("https://www.prestashop.com/en");
-            home.isHomePageLoaded().Should().BeTrue();
+        public void testHomePage() {            
+            //Assert.AreEqual(driver.Title, "PrestaShop - Free ecommerce software");
+            Assert.IsTrue(home.isHomePageLoaded());
             Console.WriteLine("App is launched successfully");
         }
         [Test]
-        public void testGoToFeaturePage()
+        public void testGSPage()
         {
-            home.openHome("https://www.prestashop.com/en");
-            home.clickProductMenu();
-            home.clickFeatureMenu();
-            Console.WriteLine("Clicked on Feature Menu");
-        }
-        [Test]
-        public void testFeaturePage()
-        {
-            home.openHome("https://www.prestashop.com/en");
-            home.clickProductMenu();
-            home.clickFeatureMenu();
-            gettingStarted.isFeaturePageLoaded().Should().BeTrue();
-            gettingStarted.clickLegalLink();
-            gettingStarted.clickBackToTop().Should().BeTrue();
-            Console.WriteLine("Feature Page testing completed");
+            //startApp();
+            gettingStarted.clickMenuPlus();
+            Assert.IsTrue(gettingStarted.isGSLinkVisible());
+            gettingStarted.clickGSLink();
+            Assert.IsTrue(gettingStarted.isGSValidationTextVisible());
         }
         [OneTimeTearDown]
         public void cleanUp()

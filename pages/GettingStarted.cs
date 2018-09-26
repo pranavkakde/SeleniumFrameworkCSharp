@@ -10,26 +10,35 @@ namespace SeleniumFramework.pages
     class GettingStarted
     {
         private IWebDriver driver = null;
-        private Util util = null;
-        private By pageImageClass = By.ClassName("title-highlights");
-        private By backToTop = By.CssSelector(".back-to-top-a");
-        private By legalLink = By.LinkText("Legal");
-        public GettingStarted(IWebDriver d)
+        private IWebElement menuPlus = null;
+        private Util util = new Util();
+        private String gsPageValidationText = "/html/body/div[1]/div/div[1]/div[1]/div/div";
+
+        public GettingStarted(IWebDriver driver)
         {
-            driver = d;
-            util = new Util(d);
+            this.driver = driver;
         }
-        public bool isFeaturePageLoaded()
+        public IWebElement getMenuPlus()
         {
-            return util.IsElementVisible(pageImageClass);
+            return driver.FindElement(By.Id("menuPlus"));
         }
-        public bool clickLegalLink()
+        public void clickMenuPlus()
         {
-            return util.ClickElement(legalLink);
+            getMenuPlus().Click();
+            util.captureScreenshot(driver);
         }
-        public bool clickBackToTop()
+        public bool isGSLinkVisible()
         {
-            return util.ClickElement(backToTop);
+            return driver.FindElement(By.LinkText("Get Started")).Displayed;
+        }
+        public void clickGSLink()
+        {
+            driver.FindElement(By.LinkText("Get Started")).Click();
+            util.captureScreenshot(driver);
+        }
+        public bool isGSValidationTextVisible()
+        {
+            return driver.FindElement(By.XPath(gsPageValidationText)).Displayed;
         }
     }
 }

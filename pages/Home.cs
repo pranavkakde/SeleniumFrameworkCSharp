@@ -9,36 +9,28 @@ namespace SeleniumFramework.pages
 {
     class Home
     {
-        //########## Setup ############
         private IWebDriver driver = null;
-        private Util util = null;
-        public Home(IWebDriver d)
+        private Util util = new Util();
+        
+        public Home(IWebDriver driver)
         {
-            this.driver = d;
-            util = new Util(d);
+            this.driver = driver;
         }
-        //########### Element Definition #############
-        private By getprestaShop = By.CssSelector(".popup-link.prestashop-link.primary-link");
-        private By productMenuXpath = By.XPath("//*[@id='header-menu']/ul/div[1]/div[1]/a");
-        private By featureMenuXpath = By.XPath("//*[@id='more-submenus-column-4093']/ul/li[3]/a");
-        //######### Function Definition #################
+        public IWebElement getprestaShop = null;
+        public IWebElement getHomeDownloadLink()
+        {
+            getprestaShop = driver.FindElement(By.LinkText("Get PrestaShop"));
+            return getprestaShop;
+        }
         public bool isHomePageLoaded()
         {
-            return util.IsElementVisible(getprestaShop);
+            return getHomeDownloadLink().Displayed;
         }
-        public bool clickProductMenu()
+        public void openHome()
         {
-            return util.ClickElement(productMenuXpath);
+            driver.Navigate().GoToUrl("https://www.prestashop.com/en");
+            util.captureScreenshot(driver);
         }
-        public bool clickFeatureMenu()
-        {
-            return util.ClickElement(featureMenuXpath);
-        }
-        public void openHome(string url)
-        {
-            driver.Navigate().GoToUrl(url);
-            driver.Manage().Window.FullScreen();
-            util.captureScreenshot();
-        }
+
     }
 }
