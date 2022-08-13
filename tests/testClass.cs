@@ -19,42 +19,52 @@ namespace SeleniumFramework.tests
         IWebDriver driver = null;
         GettingStarted gettingStarted = null;
         Home home = null;
+        TestDataManager testData = null;
+        DriverManager dm = new DriverManager();
         public static void Main(string[] args)
         {
-
+            Console.WriteLine("Main");
         }
         [OneTimeSetUp]
         public void initialize()
         {
-            driver = new ChromeDriver();
+            testData = TestDataManager.GetInstance;
+            driver = dm.getDriver(testData.browserConfig);
             gettingStarted = new GettingStarted(driver);
             home = new Home(driver);
         }
         [Test]
         public void testHomePage()
         {
-            home.openHome("https://www.prestashop.com/en");
+            TestContext.WriteLine(String.Format("Launching App {0}",  testData.AppURL));
+            home.openHome(testData.AppURL);
             home.isHomePageLoaded().Should().BeTrue();
-            Console.WriteLine("App is launched successfully");
+            TestContext.WriteLine("App is launched successfully");
         }
         [Test]
         public void testGoToFeaturePage()
         {
-            home.openHome("https://www.prestashop.com/en");
-            home.clickProductMenu();
-            home.clickFeatureMenu();
-            Console.WriteLine("Clicked on Feature Menu");
+            home.openHome(testData.AppURL);
+            TestContext.WriteLine("App is launched successfully");
+            home.clickResourceMenu().Should().BeTrue();
+            TestContext.WriteLine("Clicked on Resource Menu");
+            home.clickFeatureMenu().Should().BeTrue();
+            TestContext.WriteLine("Clicked on Feature Menu");
         }
         [Test]
         public void testFeaturePage()
         {
-            home.openHome("https://www.prestashop.com/en");
-            home.clickProductMenu();
-            home.clickFeatureMenu();
+            home.openHome(testData.AppURL);
+            TestContext.WriteLine("App is launched successfully");
+            home.clickResourceMenu().Should().BeTrue();
+            TestContext.WriteLine("Clicked on Resource Menu");
+            home.clickFeatureMenu().Should().BeTrue();
+            TestContext.WriteLine("Clicked on Feature Menu");
             gettingStarted.isFeaturePageLoaded().Should().BeTrue();
-            gettingStarted.clickLegalLink();
+            gettingStarted.clickLegalLink().Should().BeTrue();
+            TestContext.WriteLine("Clicked on Legal Link");
             gettingStarted.clickBackToTop().Should().BeTrue();
-            Console.WriteLine("Feature Page testing completed");
+            TestContext.WriteLine("Feature Page testing completed");
         }
         [OneTimeTearDown]
         public void cleanUp()

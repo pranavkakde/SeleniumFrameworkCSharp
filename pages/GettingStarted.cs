@@ -11,8 +11,8 @@ namespace SeleniumFramework.pages
     {
         private IWebDriver driver = null;
         private Util util = null;
-        private By pageImageClass = By.ClassName("title-highlights");
-        private By backToTop = By.CssSelector(".back-to-top-a");
+        private By pageImageClass = By.XPath("//h1[contains(text(),'List of features')]");
+        private By backToTop = By.ClassName("back-to-top");
         private By legalLink = By.LinkText("Legal");
         public GettingStarted(IWebDriver d)
         {

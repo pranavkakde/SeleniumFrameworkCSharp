@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Support.Extensions;
 using System.Diagnostics;
+using NUnit.Framework;
 
 namespace SeleniumFramework.util
 {
@@ -17,13 +14,19 @@ namespace SeleniumFramework.util
         {
             driver = d;
         }
-        public void captureScreenshot()
+        public void captureScreenshot(string testName)
         {
+            string workingDirectory = Environment.CurrentDirectory;
+            string screenShotDir = workingDirectory + "\\screenshots";
+            bool exists = System.IO.Directory.Exists(screenShotDir);
+            if (!exists)
+                System.IO.Directory.CreateDirectory(screenShotDir);
             Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
             string screenshot = ss.AsBase64EncodedString;
             byte[] screenshotAsByteArray = ss.AsByteArray;
-            ss.SaveAsFile("E:\\code\\CSharpe\\" + "Step" + GetTimestamp(DateTime.Now) + ".jpeg", OpenQA.Selenium.ScreenshotImageFormat.Jpeg);
-            //Console.WriteLine("Screenshot captured in file " + "E:\\code\\CSharpe\\" + "Step" + GetTimestamp(DateTime.Now) + ".jpeg");
+            string imageFilePath = screenShotDir + "\\" + testName + "_" + GetTimestamp(DateTime.Now) + ".png";
+            ss.SaveAsFile(imageFilePath, OpenQA.Selenium.ScreenshotImageFormat.Png);
+            TestContext.AddTestAttachment(imageFilePath);
         }
         public static String GetTimestamp(DateTime value)
         {
@@ -32,8 +35,8 @@ namespace SeleniumFramework.util
 
         public IWebElement WaitForElementVisible(By locator)
         {
-            WebDriverWait wait = new WebDriverWait(driver, System.TimeSpan.FromSeconds(10));
-            IWebElement element = wait.Until(ExpectedConditions.ElementIsVisible(locator));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10) );
+            IWebElement element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
             return element;
         }
         public bool ClickElement(By locator)
@@ -46,12 +49,12 @@ namespace SeleniumFramework.util
             }
             catch (NoSuchElementException e)
             {
-                Console.WriteLine("Element " + locator + "not found on page " + driver.Title);
+                TestContext.WriteLine("Element " + locator + "not found on page " + driver.Title);
                 returnValue = false;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unknown error " + e.Message + " occurred on page " + driver.Title);
+                TestContext.WriteLine("Unknown error " + e.Message + " occurred on page " + driver.Title);
                 returnValue = false;
             }
             return returnValue;
@@ -65,12 +68,12 @@ namespace SeleniumFramework.util
             }
             catch (NoSuchElementException e)
             {
-                Console.WriteLine("Element " + locator + "not found on page " + driver.Title);
+                TestContext.WriteLine("Element " + locator + "not found on page " + driver.Title);
                 returnValue=false;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unknown error " + e.Message + " occurred on page " + driver.Title);
+                TestContext.WriteLine("Unknown error " + e.Message + " occurred on page " + driver.Title);
                 returnValue = false;
             }
             return returnValue;

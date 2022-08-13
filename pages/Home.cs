@@ -19,16 +19,16 @@ namespace SeleniumFramework.pages
         }
         //########### Element Definition #############
         private By getprestaShop = By.CssSelector(".popup-link.prestashop-link.primary-link");
-        private By productMenuXpath = By.XPath("//*[@id='header-menu']/ul/div[1]/div[1]/a");
-        private By featureMenuXpath = By.XPath("//*[@id='more-submenus-column-4093']/ul/li[3]/a");
+        private By resourceMenuXpath = By.XPath("//*[@id='header-menu']/div[1]/ul/li[2]/span");
+        private By featureMenuXpath = By.XPath("//*[@id='header-menu']//a[contains(text(),'Features')]");
         //######### Function Definition #################
         public bool isHomePageLoaded()
         {
             return util.IsElementVisible(getprestaShop);
         }
-        public bool clickProductMenu()
+        public bool clickResourceMenu()
         {
-            return util.ClickElement(productMenuXpath);
+            return util.ClickElement(resourceMenuXpath);
         }
         public bool clickFeatureMenu()
         {
@@ -38,7 +38,7 @@ namespace SeleniumFramework.pages
         {
             driver.Navigate().GoToUrl(url);
             driver.Manage().Window.FullScreen();
-            util.captureScreenshot();
+            util.captureScreenshot("openHome");
         }
     }
 }

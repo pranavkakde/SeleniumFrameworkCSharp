@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)selenium.webdriver.msedgedriver\104.0.1293.54\build\Selenium.WebDriver.MSEdgeDriver.targets" Condition="Exists('$(NuGetPackageRoot)selenium.webdriver.msedgedriver\104.0.1293.54\build\Selenium.WebDriver.MSEdgeDriver.targets')" />
+    <Import Project="$(NuGetPackageRoot)selenium.webdriver.geckodriver\0.31.0.1\build\Selenium.WebDriver.GeckoDriver.targets" Condition="Exists('$(NuGetPackageRoot)selenium.webdriver.geckodriver\0.31.0.1\build\Selenium.WebDriver.GeckoDriver.targets')" />
+    <Import Project="$(NuGetPackageRoot)selenium.webdriver.chromedriver\103.0.5060.5300\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('$(NuGetPackageRoot)selenium.webdriver.chromedriver\103.0.5060.5300\build\Selenium.WebDriver.ChromeDriver.targets')" />
+    <Import Project="$(NuGetPackageRoot)netstandard.library\2.0.0\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('$(NuGetPackageRoot)netstandard.library\2.0.0\build\netstandard2.0\NETStandard.Library.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codecoverage\17.2.0\build\netstandard1.0\Microsoft.CodeCoverage.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage\17.2.0\build\netstandard1.0\Microsoft.CodeCoverage.targets')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk\17.2.0\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.targets" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk\17.2.0\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.targets')" />
+  </ImportGroup>
+</Project>
