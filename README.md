@@ -50,4 +50,5 @@ Once test execution is complete using docker, run docker cp to get test results 
 docker cp seleniumcsharp_test_run:/testrun/TestResults <host directory>
 ```
 
-2. CI/CD pipeline using Azure Devops and Github Actions.
+### Future Enhancements
+1. CI/CD pipeline using Azure Devops and Github Actions.
